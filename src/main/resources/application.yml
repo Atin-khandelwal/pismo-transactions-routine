@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: pismo-transactions-routine
+  h2:
+    console:
+      enabled: true
+  datasource:
+    generate-unique-name: false
+    name: transactions
+
+#    initialization-mode: always
+#    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+#    url: jdbc:tc:postgresql:14.5:///
+#    username: sa
+#    password: sa
+#  jpa:
+#    generate-ddl: true
