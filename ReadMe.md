@@ -20,66 +20,33 @@ transactions of credit voucher are registered with positive value.
 ### Get this Project
 
 ```shell
-# Clone this repository
-$ git clone <https://github.com/franklaercio/service--transaction-pismo.git>
+# Clone  repository
+$ git clone <https://github.com/Atin-khandelwal/pismo-transactions-routine>
 
 # Go to the directory
-$ cd service--transaction-pismo
+$ cd pismo-transactions-routine
 
-# If all right, will to run the follow command
-$ docker compose up -d
-
-```
-
-If you get any error, run this commands and try again:
-
-```shell
-$ docker rm $(docker ps -q -f status=exited)
-$ docker compose up -d
-```
-
-In addition, the application can be accessed through the URL below:
-
-```
-# Heroku
-https://service--transaction-pismo.herokuapp.com/service--transaction-pismo/swagger-ui/index.html
-```
-
-### CI/CD
-
-As soon as a new commit is made to main, a new deployment is performed automatically in heroku.:
-
-```
-# CI using Github Actions
-cd .github/workflows/maven.yml
-```
 
 ### Project Structure
 
-The project structure is based on the hexagonal architecture model, which aims to separate what is
-an external dependency and what is the core of the application.
+Project structure is based on domain driven architecture  and models are separated by two entities one is dto and other one is domain model.
+Defined packages below
+- *model*: layer responsible for data object used for business logic.
+- *dto*: layer responsible for data object used for request response logic.
+- *controller*: entry point for each request , further have one layer of abstraction to support non function usecase like document etc.
+- *service*: layer responsible for to concentrate the business logic.
+- *repository*: layer responsible for to concentrate the storing and retrieving data.
 
-Therefore, the transaction was separate into domain, adapters and configs.
-
-- *Domain*: layer responsible for to concentrate the business rules.
-- *Adapters*: layer responsible for to concentrate external dependencies.
-- *Configs*: layer responsible for to concentrate all the configurations for run this service.
-
-Next, a drawing with the idea of architecture.
-
-<p>
-   <img alt="hexagonal" width="500" src="assets/hexagonal.png" />
-<p>
+Three database tables has been used.
+TABLE Operations with id, description, evaluation_type with enum ('POSITIVE','NEGATIVE') column
+TABLE accounts id ,ACCOUNT_NUMBER, ACCOUNT_HOLDER_NAME ,CREATED_AT,ACCOUNT_TYPE 
+TABLE transactions id ,ACCOUNT_ID,OPERATION_ID ,EVENT_DATE ,AMOUNT 
+### Todo Items
+These are the tags where there will be scope of improvement.
 
 ### Application Tests
 
-At this moment the application is coverage by 100%. To achieve this, end-to-end testing was used,
-unit tests for business rules and domain settings and entities ignored in coverage. You can check
-the data accessing *target/site/index.html*, and you need to past all way to the *index.html*.
-
-<p>
-   <img alt="coverage" src="assets/jacoco.png" />
-<p>
+Unit test at the controller layer has been written.Which covers the business and request model validation.
 
 ```shell
 $ mvn clean install
@@ -90,17 +57,13 @@ $ mvn clean install
 The *endpoints* documentation was implemented following the Swagger UI documentation tool.
 
 ```
-http://localhost:8080/service--transaction-pismo/swagger-ui/index.html
+http://localhost:8080/swagger-ui/index.html
 ```
 
 In this url above, you look for the following endpoints:
 
-- /service--transaction-pismo/accounts
-- /service--transaction-pismo/accounts/accountId
-- /service--transaction-pismo/transactions
+- /api/v1/accounts
+- /api/v1/accounts/accountId
+- /api/v1/transactions
 
-### License
-
-This project is licensed under the MIT License - see the LICENSE.md file for more information.
-
-Done with :hearts: by Frank Laércio :wave:!
+!

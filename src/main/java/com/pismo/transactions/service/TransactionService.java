@@ -22,6 +22,7 @@ public class TransactionService {
     public Transaction createTransaction(Transaction transaction) {
         Operation operation= operationRepository.findById(transaction.getOperationId()).orElseThrow(()->new ResourceNotFoundException("No operationId exists"));
         Account account= accountService.getAccount(transaction.getAccountId());
+        //TODO: Below line of code can be replaced with Factory with strategy design pattern to avoid if else block
         if(operation.evaluationType().equals(EvaluationType.NEGATIVE))
            transaction.setAmount(transaction.getAmount().negate());
         transaction.setEventDate(LocalDateTime.now());
