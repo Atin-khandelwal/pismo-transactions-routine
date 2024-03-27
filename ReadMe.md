@@ -14,7 +14,7 @@ transactions of credit voucher are registered with positive value.
 
 - Spring Boot 3XX
 - Java 21 SE
-- H2 database
+- H2 database (postgres in case of docker compose)
 - Docker
 
 ### Get this Project
@@ -43,6 +43,7 @@ TABLE accounts id ,ACCOUNT_NUMBER, ACCOUNT_HOLDER_NAME ,CREATED_AT,ACCOUNT_TYPE
 TABLE transactions id ,ACCOUNT_ID,OPERATION_ID ,EVENT_DATE ,AMOUNT 
 ### Todo Items
 These are the tags where there will be scope of improvement.
+
 
 ### Application Tests
 
